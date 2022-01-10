@@ -90,3 +90,26 @@ user1   de0c23ac-8f8e-43e9-8f48-cf739ee74e87               oauth-htpasswd-user:u
 # oc adm policy add-cluster-role-to-user cluster-admin user1
 clusterrole.rbac.authorization.k8s.io/cluster-admin added: "user1"
 ```
+
+Clean up:
+```diff
+# oc login -u admin -p RedHat123! https://api.cnfdf06.ran.dfwt5g.lab:6443
+ogin successful.
+
+You have access to 78 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "default".
+
+# oc whoami
+admin
+
+# oc delete user user1
+user.user.openshift.io "user1" deleted
+
+# oc delete identity oauth-htpasswd-user:user1
+identity.user.openshift.io "oauth-htpasswd-user:user1" deleted
+
+# oc delete secret htpasswd-secret -n openshift-config
+secret "htpasswd-secret" deleted
+```
+
